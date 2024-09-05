@@ -2,6 +2,8 @@
 using eCommerceUdemy.Models;
 using ECommModels.Models;
 using ECommModels.ViewModels;
+using ECommUtility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Diagnostics;
@@ -11,6 +13,7 @@ namespace eCommerceUdemy.Areas.Admin.Controllers
 {
     [Area("Admin")]
 
+    [Authorize(Roles = SD.Role_Admin)]
 
     public class ProductController : Controller
     {
@@ -121,39 +124,7 @@ namespace eCommerceUdemy.Areas.Admin.Controllers
             }
 
         }
-        //public IActionResult Delete(int? id)
-        //{
-        //    if (id == 0 || id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    Product? prodfromdb = _unitOfWork.Product.Get(u => u.Id == id);
-        //    if (prodfromdb == null)
-        //    {
-        //        return NotFound();
-
-        //    }
-
-        //    return View(prodfromdb);
-        //}
-        //[HttpPost, ActionName("Delete")]
-        //public IActionResult DeletePOST(int? id)
-        //{
-        //    Product? obj = _unitOfWork.Product.Get(u => u.Id == id);
-        //    //if (obj.Name == null)
-        //    //{
-        //    //    return NotFound();
-        //    //}
-
-        //    _unitOfWork.Product.Remove(obj);
-        //    _unitOfWork.Save();
-        //    TempData["success"] = "Product deleted successtfully";
-
-        //    return RedirectToAction("Index");
-
-        //}
-
+       
         [HttpDelete]
         public IActionResult Delete(int? id)
         {

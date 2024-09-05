@@ -1,11 +1,12 @@
 ﻿using eCommerceUdemy.Models;
 using ECommModels.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace eCommerceUdemy.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         {
@@ -14,6 +15,14 @@ namespace eCommerceUdemy.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Companyy> Companies { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<OrderHeader> OrderHeaders { get; set; }
+
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,6 +33,12 @@ namespace eCommerceUdemy.Data
                 new Category { Id = 3, Name = "SciFi", DisplayOrder = 3 }
 
                 );
+            modelBuilder.Entity<Companyy>().HasData(
+              new Companyy { Id = 1, Name = "Tech Solutions", StreetAddress = "Radnicka 22", City="Novi Sad", State = "Srb", PostalCode ="21000", PhoneNumber="00" },
+              new Companyy { Id = 2, Name = "Levi9", StreetAddress = "Radnicka 22",City = "Novi Sad", State = "Srb", PostalCode = "21000",  PhoneNumber = "00" },
+              new Companyy { Id = 3, Name = "Sotex",  StreetAddress="Radnicka 22", City = "Novi Sad", State = "Srb", PostalCode = "21000", PhoneNumber = "00" }
+
+              );
 
             modelBuilder.Entity<Product>().HasData(
                 new Product

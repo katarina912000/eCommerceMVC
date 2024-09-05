@@ -1,12 +1,14 @@
 ﻿using ECommDataAccess.Repository.IRepository;
 using eCommerceUdemy.Data;
 using eCommerceUdemy.Models;
+using ECommUtility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eCommerceUdemy.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
+    //[Authorize(Roles =SD.Role_Admin)]
     public class CategoryController : Controller
     {
 

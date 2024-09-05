@@ -10,9 +10,18 @@ namespace ECommDataAccess.Repository.IRepository
     {
         //here we will have all repos
         //we will  be using this for all common methods
+        ICategoryRepository Category { get; }
 
-        ICategoryRepository Category{ get; }
         IProductRepository Product { get; }
+        ICompanyRepository Company { get; }
+        IShoppingCartRepository ShoppingCart { get; }
+
+        IApplicationUser ApplicationUser { get; }
+
+        IOrderDetailRepository OrderDetail { get; }
+
+        IOrderHeaderRepository OrderHeader { get; }
+
         void Save();
 
     }
