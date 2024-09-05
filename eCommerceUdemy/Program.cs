@@ -23,6 +23,23 @@ builder.Services.ConfigureApplicationCookie(options=>
 }
 );
 
+builder.Services.AddAuthentication().AddFacebook(option =>
+{
+    option.AppId = "1165592221189095";
+    option.AppSecret = "58319a233e5636b69df52a5647c60e39";
+
+});
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout=TimeSpan.FromMinutes(100);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential= true;
+});
+
+
+
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
@@ -44,6 +61,7 @@ app.UseRouting();
 app.UseAuthentication();
 
 app.UseAuthorization();
+app.UseSession();
 app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",

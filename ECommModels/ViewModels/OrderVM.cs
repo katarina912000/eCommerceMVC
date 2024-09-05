@@ -14,6 +14,6 @@ namespace ECommModels.ViewModels
         public OrderHeader OrderHeader { get; set; }
         [ValidateNever]
 
-        public IEnumerable<SelectListItem> OrderDetail { get; set; }
+        public IEnumerable<OrderDetail> OrderDetail { get; set; }
     }
 }

@@ -27,7 +27,9 @@ namespace ECommUtility
 
 
 
+        public const string SessionCart = "SessionShoppingCart";
 
 
-	}
+
+    }
 }
