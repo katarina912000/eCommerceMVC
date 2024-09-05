@@ -222,7 +222,7 @@ namespace eCommerceUdemy.Areas.Identity.Pages.Account
                     {
                         if (User.IsInRole(SD.Role_Admin))
                         {
-                            TempData["success"]="New user created"
+                            TempData["success"] = "New user created";
                         }
                         else
                         {
