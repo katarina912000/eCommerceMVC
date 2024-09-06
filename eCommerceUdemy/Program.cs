@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using ECommUtility;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using ECommDataAccess.DbInitializer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,7 @@ builder.Services.AddSession(options =>
 });
 
 
+builder.Services.AddScoped<IdbInitializer, DbInitializer>();
 
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
@@ -62,9 +64,20 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 app.UseSession();
+SeedDataBase();
 app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
+void SeedDataBase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer=scope.ServiceProvider.GetRequiredService<IdbInitializer>();
+        dbInitializer.Initialize();
+    }
+}

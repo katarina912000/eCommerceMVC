@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ECommModels\ECommModels.csproj" />
+    <ProjectReference Include="..\ECommUtility\ECommUtility.csproj" />
   </ItemGroup>
 
 </Project>
