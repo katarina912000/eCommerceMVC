@@ -39,7 +39,6 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential= true;
 });
 
-
 builder.Services.AddScoped<IdbInitializer, DbInitializer>();
 
 builder.Services.AddRazorPages();
@@ -64,7 +63,9 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 app.UseSession();
+
 SeedDataBase();
+
 app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
